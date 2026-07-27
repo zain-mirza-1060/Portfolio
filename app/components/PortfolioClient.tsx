@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import Hero from './Hero';
 import About from './About';
@@ -9,7 +8,6 @@ import Skills from './Skills';
 import Projects from './Projects';
 import Contact from './Contact';
 import Footer from './Footer';
-import Loading from './Loading';
 
 type Intro = { name: string; title: string; tagline: string; summary: string; yearsExperience: string };
 type ContactInfo = { email: string; phone: string; linkedin: string; github: string };
@@ -27,15 +25,6 @@ type Props = {
 };
 
 export default function PortfolioClient({ intro, contact, experience, industryProjects, personalProjects, techStacks }: Props) {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) return <Loading intro={intro} />;
-
   return (
     <main className="min-h-screen">
       <Navbar intro={intro} />

@@ -6,29 +6,29 @@ html {
   scroll-behavior: smooth;
 }
 
-:root {
-  --foreground-rgb: 248, 250, 252;
-  --background-start-rgb: 5, 5, 15;
-  --background-end-rgb: 15, 23, 42;
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      rgb(var(--background-start-rgb)),
-      rgb(var(--background-end-rgb))
-    )
-    fixed;
+  color: rgb(248, 250, 252);
+  background: #0f172a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
-  }
-  
-  .bg-gradient-primary {
-    @apply bg-gradient-to-r from-primary to-secondary;
+/* Focus visible styles for accessibility */
+@layer base {
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-cyan-500;
   }
 }
 
